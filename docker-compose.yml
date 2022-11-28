@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:10.13
+    ports:
+      - "55432:5432"
+    environment:
+      - POSTGRES_DB=tass
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=root
+    volumes:
+      - ./docker/data:/var/lib/postgresql/data

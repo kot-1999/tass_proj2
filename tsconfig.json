@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "esModuleInterop": true,
+    "target": "es2019",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "skipLibCheck": true,
+    "typeRoots" : [
+      "./src/types/*",
+      "node_modules/@types"
+    ],
+    "resolveJsonModule": true
+  },
+  "include": [
+    "./config/*",
+  ],
+  "exclude": [
+    "node_modules/"
+  ]
+}
