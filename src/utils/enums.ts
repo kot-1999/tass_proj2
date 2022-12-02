@@ -5,5 +5,11 @@ export const enum ROLE {
 }
 
 export const enum LANGUAGE {
-    ITALIAN = 'it'
+    ITALIAN = 'it',
+    ENGLISH = 'en'
+}
+
+export const enum GENDER {
+    MALE = 'MALE',
+    FEMALE = 'FEMALE'
 }

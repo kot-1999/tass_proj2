@@ -1,14 +1,16 @@
 import { Sequelize, DataTypes } from 'sequelize'
 import { DatabaseModel } from '../../types/models'
 import { Models } from './index'
+import {ScenaristModel} from "./scenarists";
 
-export class GenersModel extends DatabaseModel {
+export class GenresModel extends DatabaseModel {
     id: number
     name: string
+
 }
 
 export default (sequelize: Sequelize) => {
-    GenersModel.init(
+    GenresModel.init(
         {
             id: {
                 type: DataTypes.BIGINT,
@@ -18,8 +20,8 @@ export default (sequelize: Sequelize) => {
                 autoIncrement: true
             },
             name: {
-                type: DataTypes.STRING,
-                allowNull: false
+                type: DataTypes.TEXT,
+                allowNull: true,
             }
         },
         {
@@ -29,18 +31,19 @@ export default (sequelize: Sequelize) => {
             paranoid: false
         }
     )
-    ;GenersModel.associate = (models: Models) => {
-        GenersModel.belongsToMany(models.Movies, {
+    ;GenresModel.associate = (models: Models) => {
+        GenresModel.hasMany(models.SubtitlesFacts, {
             foreignKey: {
                 name: 'genreID',
-                allowNull: false
-            },
-            through: {
-                model: models.MovieGeners,
-                unique: false
-            },
-            constraints: false
+                allowNull: true
+            }
+        })
+        GenresModel.hasMany(models.MoviesFacts, {
+            foreignKey: {
+                name: 'genreID',
+                allowNull: true
+            }
         })
     }
-    return GenersModel
+    return GenresModel
 }

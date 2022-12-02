@@ -1,17 +1,20 @@
 import { Sequelize, DataTypes } from 'sequelize'
 import { DatabaseModel } from '../../types/models'
 import { Models } from './index'
+import {GENDER} from "../../utils/enums";
 import {ScenaristModel} from "./scenarists";
 
-export class MoviesModel extends DatabaseModel {
+export class DicrectorModel extends DatabaseModel {
     id: number
-    name: string
-    country: string
+
+    fullName: string
+    gender: GENDER
+    yearOFBirth: string
 
 }
 
 export default (sequelize: Sequelize) => {
-    MoviesModel.init(
+    DicrectorModel.init(
         {
             id: {
                 type: DataTypes.BIGINT,
@@ -20,35 +23,39 @@ export default (sequelize: Sequelize) => {
                 unique: true,
                 autoIncrement: true
             },
-            name: {
+            fullName: {
                 type: DataTypes.TEXT,
-                allowNull: true,
+                allowNull: true
             },
-            country: {
+            gender: {
                 type: DataTypes.TEXT,
-                allowNull: true,
+                allowNull: true
+            },
+            yearOFBirth: {
+                type: DataTypes.TEXT,
+                allowNull: true
             }
         },
         {
             sequelize,
             timestamps: false,
-            modelName: 'movies',
+            modelName: 'directors',
             paranoid: false
         }
     )
-    ;MoviesModel.associate = (models: Models) => {
-        MoviesModel.hasMany(models.SubtitlesFacts, {
+    ;DicrectorModel.associate = (models: Models) => {
+        DicrectorModel.hasMany(models.SubtitlesFacts, {
             foreignKey: {
-                name: 'movieID',
+                name: 'directorID',
                 allowNull: true
             }
         })
-        MoviesModel.hasMany(models.MoviesFacts, {
+        DicrectorModel.hasMany(models.MoviesFacts, {
             foreignKey: {
-                name: 'movieID',
+                name: 'directorID',
                 allowNull: true
             }
         })
     }
-    return MoviesModel
+    return DicrectorModel
 }

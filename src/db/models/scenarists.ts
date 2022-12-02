@@ -1,17 +1,19 @@
 import { Sequelize, DataTypes } from 'sequelize'
 import { DatabaseModel } from '../../types/models'
 import { Models } from './index'
-import {ScenaristModel} from "./scenarists";
+import {GENDER} from "../../utils/enums";
+import {TimeModel} from "./times";
 
-export class MoviesModel extends DatabaseModel {
+export class ScenaristModel extends DatabaseModel {
     id: number
-    name: string
-    country: string
 
+    fullName: string
+    gender: GENDER
+    yearOFBirth: string
 }
 
 export default (sequelize: Sequelize) => {
-    MoviesModel.init(
+    ScenaristModel.init(
         {
             id: {
                 type: DataTypes.BIGINT,
@@ -20,35 +22,39 @@ export default (sequelize: Sequelize) => {
                 unique: true,
                 autoIncrement: true
             },
-            name: {
+            fullName: {
                 type: DataTypes.TEXT,
-                allowNull: true,
+                allowNull: true
             },
-            country: {
+            gender: {
                 type: DataTypes.TEXT,
-                allowNull: true,
+                allowNull: true
+            },
+            yearOFBirth: {
+                type: DataTypes.TEXT,
+                allowNull: true
             }
         },
         {
             sequelize,
             timestamps: false,
-            modelName: 'movies',
+            modelName: 'scenarists',
             paranoid: false
         }
     )
-    ;MoviesModel.associate = (models: Models) => {
-        MoviesModel.hasMany(models.SubtitlesFacts, {
+    ;ScenaristModel.associate = (models: Models) => {
+        ScenaristModel.hasMany(models.SubtitlesFacts, {
             foreignKey: {
-                name: 'movieID',
+                name: 'scenaristID',
                 allowNull: true
             }
         })
-        MoviesModel.hasMany(models.MoviesFacts, {
+        ScenaristModel.hasMany(models.MoviesFacts, {
             foreignKey: {
-                name: 'movieID',
+                name: 'scenaristID',
                 allowNull: true
             }
         })
     }
-    return MoviesModel
+    return ScenaristModel
 }

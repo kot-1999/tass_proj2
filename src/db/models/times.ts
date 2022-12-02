@@ -1,17 +1,20 @@
 import { Sequelize, DataTypes } from 'sequelize'
 import { DatabaseModel } from '../../types/models'
 import { Models } from './index'
-import {ScenaristModel} from "./scenarists";
+import {SubtitlesModel} from "./subtitles";
+import {ActorsModel} from "./actors";
 
-export class MoviesModel extends DatabaseModel {
+export class TimeModel extends DatabaseModel {
     id: number
-    name: string
-    country: string
+
+    year: string
+    month: string
+    date: string
 
 }
 
 export default (sequelize: Sequelize) => {
-    MoviesModel.init(
+    TimeModel.init(
         {
             id: {
                 type: DataTypes.BIGINT,
@@ -20,35 +23,39 @@ export default (sequelize: Sequelize) => {
                 unique: true,
                 autoIncrement: true
             },
-            name: {
+            year: {
                 type: DataTypes.TEXT,
-                allowNull: true,
+                allowNull: true
             },
-            country: {
+            month: {
                 type: DataTypes.TEXT,
-                allowNull: true,
-            }
+                allowNull: true
+            },
+            date: {
+                type: DataTypes.TEXT,
+                allowNull: true
+            },
         },
         {
             sequelize,
             timestamps: false,
-            modelName: 'movies',
+            modelName: 'times',
             paranoid: false
         }
     )
-    ;MoviesModel.associate = (models: Models) => {
-        MoviesModel.hasMany(models.SubtitlesFacts, {
+    ;TimeModel.associate = (models: Models) => {
+        TimeModel.hasMany(models.SubtitlesFacts, {
             foreignKey: {
-                name: 'movieID',
+                name: 'timeID',
                 allowNull: true
             }
         })
-        MoviesModel.hasMany(models.MoviesFacts, {
+        TimeModel.hasMany(models.MoviesFacts, {
             foreignKey: {
-                name: 'movieID',
+                name: 'timeID',
                 allowNull: true
             }
         })
     }
-    return MoviesModel
+    return TimeModel
 }

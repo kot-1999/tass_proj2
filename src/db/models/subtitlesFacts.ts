@@ -1,8 +1,9 @@
 import { Sequelize, DataTypes } from 'sequelize'
 import { DatabaseModel } from '../../types/models'
 import { Models } from './index'
+import {MoviesFactsModel} from "./moviesFacts";
 
-export class MoviesFactsModel extends DatabaseModel {
+export class SubtitlesFactsModel extends DatabaseModel {
     id: number
 
     timeID: number
@@ -11,14 +12,13 @@ export class MoviesFactsModel extends DatabaseModel {
     scenaristID: number
     directorID: number
 
-    budget: number
-    numOfVotes: number
-    rating: number
-    duration: number
+    wordsCount: number
+    numberOfReplicas: number
+    numberOfCharacters: number
 }
 
 export default (sequelize: Sequelize) => {
-    MoviesFactsModel.init(
+    SubtitlesFactsModel.init(
         {
             id: {
                 type: DataTypes.BIGINT,
@@ -27,67 +27,63 @@ export default (sequelize: Sequelize) => {
                 unique: true,
                 autoIncrement: true
             },
-            budget: {
-                type: DataTypes.INTEGER,
-                allowNull: true,
+            wordsCount: {
+                type: DataTypes.BIGINT,
+                allowNull: true
             },
-            rating: {
-                type: DataTypes.INTEGER,
-                allowNull: true,
+            numberOfReplicas: {
+                type: DataTypes.BIGINT,
+                allowNull: true
             },
-            numOfVotes: {
-                type: DataTypes.INTEGER,
-                allowNull: true,
-            },
-            duration: {
-                type: DataTypes.INTEGER,
-                allowNull: true,
+            numberOfCharacters: {
+                type: DataTypes.BIGINT,
+                allowNull: true
             },
         },
         {
             sequelize,
             timestamps: false,
-            modelName: 'moviesFacts',
+            modelName: 'subtitlesFacts',
             paranoid: false
         }
     )
-    ;MoviesFactsModel.associate = (models: Models) => {
-        MoviesFactsModel.belongsTo(models.Times, {
+    ;SubtitlesFactsModel.associate = (models: Models) => {
+        SubtitlesFactsModel.belongsTo(models.Times, {
             foreignKey: {
                 name: 'timeID',
                 allowNull: true
             }
         })
-        MoviesFactsModel.belongsTo(models.Actors, {
+        SubtitlesFactsModel.belongsTo(models.Subtitles, {
             foreignKey: {
-                name: 'actorID',
+                name: 'subtitleID',
                 allowNull: true
             }
         })
-        MoviesFactsModel.belongsTo(models.Movies, {
+        SubtitlesFactsModel.belongsTo(models.Movies, {
             foreignKey: {
                 name: 'movieID',
                 allowNull: true
             }
         })
-        MoviesFactsModel.belongsTo(models.Genres, {
+        SubtitlesFactsModel.belongsTo(models.Genres, {
             foreignKey: {
                 name: 'genreID',
                 allowNull: true
             }
         })
-        MoviesFactsModel.belongsTo(models.Scenarists, {
+        SubtitlesFactsModel.belongsTo(models.Scenarists, {
             foreignKey: {
                 name: 'scenaristID',
                 allowNull: true
             }
         })
-        MoviesFactsModel.belongsTo(models.Directors, {
+        SubtitlesFactsModel.belongsTo(models.Directors, {
             foreignKey: {
                 name: 'directorID',
                 allowNull: true
             }
         })
     }
-    return MoviesFactsModel
+    return SubtitlesFactsModel
 }

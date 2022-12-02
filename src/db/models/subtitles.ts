@@ -5,12 +5,7 @@ import {LANGUAGE} from "../../utils/enums";
 
 export class SubtitlesModel extends DatabaseModel {
     id: number
-    movieID: number
-
     language: LANGUAGE
-    text: string
-    startTime: number
-    endTime: number
 }
 
 export default (sequelize: Sequelize) => {
@@ -19,44 +14,28 @@ export default (sequelize: Sequelize) => {
             id: {
                 type: DataTypes.BIGINT,
                 allowNull: false,
-                unique: false,
                 primaryKey: true,
-            },
-            movieID: {
-                type: DataTypes.BIGINT,
-                allowNull: false,
-                primaryKey: true,
-                unique: false,
+                unique: true,
+                autoIncrement: true
             },
             language: {
                 type: DataTypes.STRING(2),
-                allowNull: false
-            },
-            text: {
-                type: DataTypes.TEXT,
-                allowNull: false
-            },
-            startTime: {
-                type: DataTypes.INTEGER,
-                allowNull: false
-            },
-            endTime: {
-                type: DataTypes.INTEGER,
-                allowNull: false
+                allowNull: true
             }
         },
+
         {
             sequelize,
             timestamps: false,
-            modelName: 'subtitles',
+            modelName: 'actors',
             paranoid: false
         }
     )
     ;SubtitlesModel.associate = (models: Models) => {
-        SubtitlesModel.belongsTo(models.Movies, {
+        SubtitlesModel.hasMany(models.SubtitlesFacts, {
             foreignKey: {
-                name: 'movieID',
-                allowNull: false
+                name: 'subtitleID',
+                allowNull: true
             }
         })
     }

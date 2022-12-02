@@ -1,17 +1,18 @@
 import { Sequelize, DataTypes } from 'sequelize'
 import { DatabaseModel } from '../../types/models'
 import { Models } from './index'
-import {ScenaristModel} from "./scenarists";
+import {GENDER} from "../../utils/enums";
 
-export class MoviesModel extends DatabaseModel {
+export class ActorsModel extends DatabaseModel {
     id: number
-    name: string
-    country: string
 
+    fullName: string
+    gender: GENDER
+    yearOFBirth: string
 }
 
 export default (sequelize: Sequelize) => {
-    MoviesModel.init(
+    ActorsModel.init(
         {
             id: {
                 type: DataTypes.BIGINT,
@@ -20,35 +21,34 @@ export default (sequelize: Sequelize) => {
                 unique: true,
                 autoIncrement: true
             },
-            name: {
+            fullName: {
                 type: DataTypes.TEXT,
-                allowNull: true,
+                allowNull: true
             },
-            country: {
+            gender: {
                 type: DataTypes.TEXT,
-                allowNull: true,
+                allowNull: true
+            },
+            yearOFBirth: {
+                type: DataTypes.TEXT,
+                allowNull: true
             }
+
         },
         {
             sequelize,
             timestamps: false,
-            modelName: 'movies',
+            modelName: 'actors',
             paranoid: false
         }
     )
-    ;MoviesModel.associate = (models: Models) => {
-        MoviesModel.hasMany(models.SubtitlesFacts, {
+    ;ActorsModel.associate = (models: Models) => {
+        ActorsModel.hasMany(models.MoviesFacts, {
             foreignKey: {
-                name: 'movieID',
-                allowNull: true
-            }
-        })
-        MoviesModel.hasMany(models.MoviesFacts, {
-            foreignKey: {
-                name: 'movieID',
+                name: 'actorID',
                 allowNull: true
             }
         })
     }
-    return MoviesModel
+    return ActorsModel
 }
