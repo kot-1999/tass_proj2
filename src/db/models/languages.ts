@@ -34,7 +34,7 @@ export default (sequelize: Sequelize) => {
     ;LanguagesModel.associate = (models: Models) => {
         LanguagesModel.hasMany(models.SubtitlesFacts, {
             foreignKey: {
-                name: 'subtitleID',
+                name: 'languageID',
                 allowNull: true
             }
         })

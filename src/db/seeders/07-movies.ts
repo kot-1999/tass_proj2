@@ -3,9 +3,8 @@ import fs from 'fs'
 
 const movies: any[] = JSON.parse(fs.readFileSync('./scripts/movie.json', { encoding: 'utf-8' })).map((value: any) => ({
     id: value.time_id,
-    year: value.year,
-    month: value.month,
-    date: value.date
+    name: value.name,
+    country: value.country
 }))
 
 export async function up() {

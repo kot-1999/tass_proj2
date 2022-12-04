@@ -25,8 +25,6 @@ subtitlesTmp.forEach((subtitle) => {
     genres.forEach((genre: any) => {
         scenarists.forEach((scenarist: any) => {
             directors.forEach((director: any) => {
-                if (genre != null && genre < 1)
-                    genre = null
                 subtitlesFacts.push({
                     languageID: subtitle.languageID,
                     timeID: subtitle.timeID,
