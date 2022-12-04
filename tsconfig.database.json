@@ -9,14 +9,12 @@
     "resolveJsonModule": true,
     "typeRoots" : [
       "node_modules/@types",
-      "./src/types",
-      "./scripts/**/*"
+      "./src/types"
     ],
     "skipLibCheck": true
   },
   "include": [
-    "./src/db/**/*",
-    "./scripts/**/*"
+    "./src/db/**/*"
   ],
   "exclude": [
     "node_modules"

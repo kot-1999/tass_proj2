@@ -1,8 +1,6 @@
 import { Sequelize, DataTypes } from 'sequelize'
 import { DatabaseModel } from '../../types/models'
 import { Models } from './index'
-import {SubtitlesModel} from "./subtitles";
-import {ActorsModel} from "./actors";
 
 export class TimeModel extends DatabaseModel {
     id: number

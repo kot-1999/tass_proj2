@@ -2,7 +2,6 @@ import { Sequelize, DataTypes } from 'sequelize'
 import { DatabaseModel } from '../../types/models'
 import { Models } from './index'
 import {GENDER} from "../../utils/enums";
-import {TimeModel} from "./times";
 
 export class ScenaristModel extends DatabaseModel {
     id: number

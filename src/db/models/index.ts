@@ -20,9 +20,9 @@ import defineSubtitles from './subtitles'
 pg.defaults.parseInt8 = true
 
 
-const { global } = database.development
+const { url, options } = database.development
 
-const models = new Sequelize(global.url, global.options)
+const models = new Sequelize(url, options)
 
 models
     .authenticate()
