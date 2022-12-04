@@ -5,6 +5,7 @@ import { Models } from './index'
 export class SubtitlesFactsModel extends DatabaseModel {
     id: number
 
+    languageID: number
     timeID: number
     movieID: number
     genreID: number
@@ -55,7 +56,7 @@ export default (sequelize: Sequelize) => {
         })
         SubtitlesFactsModel.belongsTo(models.Languages, {
             foreignKey: {
-                name: 'subtitleID',
+                name: 'languageID',
                 allowNull: true
             }
         })

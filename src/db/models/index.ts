@@ -22,35 +22,34 @@ pg.defaults.parseInt8 = true
 
 const { url, options } = database.development
 
-const models = new Sequelize(url, options)
+const seq = new Sequelize(url, options)
 
-models
+seq
     .authenticate()
     .then(() => console.log('Database GL connection has been established successfully.'.green))
     .catch((e: any) => console.error(`Unable to connect to the database${e}.`.red))
 
-const modelTypes = {
-    MoviesFacts: defineMoviesFacts(models),
-    SubtitlesFacts: defineSubtitlesFacts(models),
-    Actors: defineActors(models),
-    Scenarists: defineScenarists(models),
-    Directors: defineDirectors(models),
-    Genres: defineGenres(models),
-    Languages: defineSubtitles(models),
-    Times: defineTimes(models),
-    Movies: defineMovies(models)
+const models = {
+    MoviesFacts: defineMoviesFacts(seq),
+    SubtitlesFacts: defineSubtitlesFacts(seq),
+    Actors: defineActors(seq),
+    Scenarists: defineScenarists(seq),
+    Directors: defineDirectors(seq),
+    Genres: defineGenres(seq),
+    Languages: defineSubtitles(seq),
+    Times: defineTimes(seq),
+    Movies: defineMovies(seq)
 
 }
 
-forEach(modelTypes, (value) => {
+forEach(models, (value) => {
     if (typeof value.associate === 'function') {
-        value.associate(modelTypes)
+        value.associate(models)
     }
 })
 
 
-type Models = typeof modelTypes
+type Models = typeof models
 
 export type { Models }
-export { models, modelTypes }
-export default models
+export { seq, models }

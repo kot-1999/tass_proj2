@@ -19,7 +19,6 @@ export default (sequelize: Sequelize) => {
                 allowNull: false,
                 primaryKey: true,
                 unique: true,
-                autoIncrement: true
             },
             fullName: {
                 type: DataTypes.TEXT,

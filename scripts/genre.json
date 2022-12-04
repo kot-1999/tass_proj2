@@ -1,0 +1,90 @@
+[
+    {
+        "name": "fantasy",
+        "genre_id": 1
+    },
+    {
+        "name": "romance",
+        "genre_id": 2
+    },
+    {
+        "name": "drama",
+        "genre_id": 3
+    },
+    {
+        "name": "comedy",
+        "genre_id": 4
+    },
+    {
+        "name": "science fiction",
+        "genre_id": 5
+    },
+    {
+        "name": "adventure",
+        "genre_id": 6
+    },
+    {
+        "name": "action",
+        "genre_id": 7
+    },
+    {
+        "name": "horror",
+        "genre_id": 8
+    },
+    {
+        "name": "crime",
+        "genre_id": 9
+    },
+    {
+        "name": "animation",
+        "genre_id": 10
+    },
+    {
+        "name": "family",
+        "genre_id": 11
+    },
+    {
+        "name": "history",
+        "genre_id": 12
+    },
+    {
+        "name": "thriller",
+        "genre_id": 13
+    },
+    {
+        "name": "documentary",
+        "genre_id": 14
+    },
+    {
+        "name": "mystery",
+        "genre_id": 15
+    },
+    {
+        "name": "war",
+        "genre_id": 16
+    },
+    {
+        "name": "music",
+        "genre_id": 17
+    },
+    {
+        "name": "tv movie",
+        "genre_id": 18
+    },
+    {
+        "name": "western",
+        "genre_id": 19
+    },
+    {
+        "genre_id": 20,
+        "name": "musical"
+    },
+    {
+        "genre_id": 21,
+        "name": "biography"
+    },
+    {
+        "genre_id": 22,
+        "name": "adult"
+    }
+]

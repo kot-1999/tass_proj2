@@ -5,9 +5,9 @@ import { Models } from './index'
 export class TimeModel extends DatabaseModel {
     id: number
 
-    year: string
-    month: string
-    date: string
+    year: number
+    month: number
+    date: number
 
 }
 
@@ -22,15 +22,15 @@ export default (sequelize: Sequelize) => {
                 autoIncrement: true
             },
             year: {
-                type: DataTypes.TEXT,
+                type: DataTypes.INTEGER,
                 allowNull: true
             },
             month: {
-                type: DataTypes.TEXT,
+                type: DataTypes.INTEGER,
                 allowNull: true
             },
             date: {
-                type: DataTypes.TEXT,
+                type: DataTypes.INTEGER,
                 allowNull: true
             },
         },

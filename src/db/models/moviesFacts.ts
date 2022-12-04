@@ -5,6 +5,7 @@ import { Models } from './index'
 export class MoviesFactsModel extends DatabaseModel {
     id: number
 
+    actorID: number
     timeID: number
     movieID: number
     genreID: number
