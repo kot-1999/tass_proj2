@@ -3,13 +3,13 @@ import { DatabaseModel } from '../../types/models'
 import { Models } from './index'
 import {LANGUAGE} from "../../utils/enums";
 
-export class SubtitlesModel extends DatabaseModel {
+export class LanguagesModel extends DatabaseModel {
     id: number
-    language: LANGUAGE
+    code: string
 }
 
 export default (sequelize: Sequelize) => {
-    SubtitlesModel.init(
+    LanguagesModel.init(
         {
             id: {
                 type: DataTypes.BIGINT,
@@ -18,8 +18,8 @@ export default (sequelize: Sequelize) => {
                 unique: true,
                 autoIncrement: true
             },
-            language: {
-                type: DataTypes.STRING(2),
+            code: {
+                type: DataTypes.STRING,
                 allowNull: true
             }
         },
@@ -27,17 +27,17 @@ export default (sequelize: Sequelize) => {
         {
             sequelize,
             timestamps: false,
-            modelName: 'actors',
+            modelName: 'languages',
             paranoid: false
         }
     )
-    ;SubtitlesModel.associate = (models: Models) => {
-        SubtitlesModel.hasMany(models.SubtitlesFacts, {
+    ;LanguagesModel.associate = (models: Models) => {
+        LanguagesModel.hasMany(models.SubtitlesFacts, {
             foreignKey: {
                 name: 'subtitleID',
                 allowNull: true
             }
         })
     }
-    return SubtitlesModel
+    return LanguagesModel
 }

@@ -53,7 +53,7 @@ export default (sequelize: Sequelize) => {
                 allowNull: true
             }
         })
-        SubtitlesFactsModel.belongsTo(models.Subtitles, {
+        SubtitlesFactsModel.belongsTo(models.Languages, {
             foreignKey: {
                 name: 'subtitleID',
                 allowNull: true

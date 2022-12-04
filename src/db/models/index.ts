@@ -13,7 +13,7 @@ import defineDirectors from './directors'
 import defineTimes from './times'
 import defineMovies from './movies'
 import defineGenres from './genres'
-import defineSubtitles from './subtitles'
+import defineSubtitles from './languages'
 
 
 // Set true because otherwise BIGINT return string instead of integer https://github.com/sequelize/sequelize/issues/1774
@@ -36,7 +36,7 @@ const modelTypes = {
     Scenarists: defineScenarists(models),
     Directors: defineDirectors(models),
     Genres: defineGenres(models),
-    Subtitles: defineSubtitles(models),
+    Languages: defineSubtitles(models),
     Times: defineTimes(models),
     Movies: defineMovies(models)
 
