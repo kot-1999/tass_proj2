@@ -2,7 +2,7 @@
 # TASS Project 2.0
 
 ### Description
-The TASS Proj2 project is a backend application built using Node.js and TypeScript, designed for managing and querying a multi-dimensional database. It leverages advanced data modeling techniques to support complex, multi-faceted datasets efficiently.
+The TASS Proj 2.0 project is a backend application built using Node.js and TypeScript, designed for managing and querying a multi-dimensional database. It leverages advanced data modeling techniques to support complex, multi-faceted datasets efficiently.
 
 ### Key Features:
 - **Multi-Dimensional Data Handling:** Optimized for storing and querying data with multiple dimensions.
